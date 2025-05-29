@@ -6,7 +6,7 @@ const Title = ({ text }) => <h2>{text}</h2>;
 const Anecdote = ({ text, votes }) => (
   <div>
     <p>{text}</p>
-    <p>God: {votes.god} | But: {votes.but} | Neutral: {votes.neutral}</p>
+    <p>God: {votes.good} | But: {votes.bad} | Neutral: {votes.neutral}</p>
   </div>
 );
 
@@ -26,7 +26,7 @@ function App() {
 
   const [selected, setSelected] = useState(0);
   const [votes, setVotes] = useState(
-    anecdotes.map(() => ({ god: 0, but: 0, neutral: 0 }))
+    anecdotes.map(() => ({ good: 0, bad: 0, neutral: 0 }))
   );
 
   // Función para cambiar a una anécdota aleatoria distinta
@@ -51,7 +51,7 @@ function App() {
     let maxIndex = 0;
 
     votes.forEach((v, i) => {
-      const total = v.god + v.but + v.neutral;
+      const total = v.good + v.bad + v.neutral;
       if (total > maxVotes) {
         maxVotes = total;
         maxIndex = i;
@@ -66,8 +66,8 @@ function App() {
       <Title text="Anécdota del día" />
       <Anecdote text={anecdotes[selected]} votes={votes[selected]} />
 
-      <Button handleClick={() => vote("god")} text="God" />
-      <Button handleClick={() => vote("but")} text="But" />
+      <Button handleClick={() => vote("good")} text="Good" />
+      <Button handleClick={() => vote("bad")} text="Bad" />
       <Button handleClick={() => vote("neutral")} text="Neutral" />
       <Button handleClick={nextAnecdote} text="Siguiente Anécdota" />
 
